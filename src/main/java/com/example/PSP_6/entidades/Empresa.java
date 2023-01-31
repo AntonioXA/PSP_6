@@ -3,6 +3,11 @@ package com.example.PSP_6.entidades;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Size;
@@ -62,5 +67,9 @@ public class Empresa {
 	@Size(max=40)
 	@Column(name = "Web", nullable = false)
 	private String web;
+	
+	@ManyToMany
+	@JoinTable(name = "empresa_estudiantes", joinColumns = @JoinColumn(name = "empresa_id"), inverseJoinColumns = @JoinColumn(name = "estudiante_dni"))
+	private List<Estudiantes> estudiantes;
 
 }

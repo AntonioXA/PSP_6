@@ -1,5 +1,12 @@
 package com.example.PSP_6.entidades;
 
+import java.util.List;
+
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -63,4 +70,10 @@ public class Estudiantes {
 	@Size(max=60)
 	@Column(name = "Linkedin", nullable = false)
 	private String linkedin;
+	
+	
+	@ManyToMany
+	@JoinTable(name = "empresa_estudiantes", joinColumns = @JoinColumn(name = "estudiante_dni"), inverseJoinColumns = @JoinColumn(name = "empresa_id"))
+	private List<Empresa> empresas;
+	
 }
